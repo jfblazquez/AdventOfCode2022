@@ -12,7 +12,7 @@ int main() {
 	//Test current day
 	const clock_t begin_time = clock();
 
-	Day5 day;
+	Day6 day;
 
 	int p1 = day.puzzle1();
 	if (std::numeric_limits<int>::max() != p1) {
@@ -20,8 +20,8 @@ int main() {
 	}
 	int p2 = day.puzzle2();
 
-	if (std::numeric_limits<int>::max() != p1) {
-		cout << "Day " << day.getDay() << " puzzle 1: " << p1 << "\n";
+	if (std::numeric_limits<int>::max() != p2) {
+		cout << "Day " << day.getDay() << " puzzle 2: " << p2 << "\n";
 	}	
 	std::cout << endl << "Elapsed: " << float(clock() - begin_time) / CLOCKS_PER_SEC << endl;
 	return 0;
