@@ -12,7 +12,7 @@ int main() {
 	//Test current day
 	const clock_t begin_time = clock();
 
-	Day6 day;
+	Day7 day;
 
 	int p1 = day.puzzle1();
 	if (std::numeric_limits<int>::max() != p1) {
@@ -30,11 +30,11 @@ int main() {
 		new Day1(),
 		new Day2(),
 		new Day3(),
-		/*new Day4(),
+		new Day4(),
 		new Day5(),
 		new Day6(),
 		new Day7(),
-		new Day8(),
+		/*new Day8(),
 		new Day9(),
 		new Day10(),
 		new Day11(),
