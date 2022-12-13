@@ -136,6 +136,7 @@
     <ClCompile Include="Day5.cpp" />
     <ClCompile Include="Day6.cpp" />
     <ClCompile Include="Day7.cpp" />
+    <ClCompile Include="Day8.cpp" />
     <ClCompile Include="NotImplementedException.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="Day5.h" />
     <ClInclude Include="Day6.h" />
     <ClInclude Include="Day7.h" />
+    <ClInclude Include="Day8.h" />
     <ClInclude Include="NotImplementedException.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
