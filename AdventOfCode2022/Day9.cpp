@@ -19,40 +19,24 @@ int Day9::puzzle1() {
     fillData();
     pairi head{ 0,0 };
     pairi tail{ 0,0 };
-    pairi moveDown{ 1,0 };
-    pairi moveUp{ -1,0 };
-    pairi moveRight{ 0,1 };
-    pairi moveLeft{ 0,-1 };
 
     visited.insert(tail);
     for (int i = 0; i < movements.size(); i++) {
-        auto current = movements[i];
+        auto& current = movements[i];
         for (int j = 0; j < times[i]; j++) {
             head = sum(head, current);
             auto htdiff = diff(head, tail);
-            if (htdiff == pairi{ -2, 0 }) {
-                tail = sum(tail, moveUp);
-            }
-            else if (htdiff == pairi{ 2, 0 }) {
-                tail = sum(tail, moveDown);
-            }
-            else if (htdiff == pairi{ 0, 2 }) {
-                tail = sum(tail, moveRight);
-            }
-            else if (htdiff == pairi{ 0, -2 }) {
-                tail = sum(tail, moveLeft);
-            }
-            else if (std::abs(htdiff.first) > 1 || std::abs(htdiff.second) > 1) {
+            if (std::abs(htdiff.first) > 1 || std::abs(htdiff.second) > 1) {
                 if (htdiff.first < 0) {
                     tail = sum(tail, moveUp);
                 }
-                else {
+                else if (htdiff.first > 0) {
                     tail = sum(tail, moveDown);
                 }
                 if (htdiff.second < 0) {
                     tail = sum(tail, moveLeft);
                 }
-                else {
+                else if (htdiff.second > 0) {
                     tail = sum(tail, moveRight);
                 }
             }
@@ -63,8 +47,53 @@ int Day9::puzzle1() {
 }
 
 int Day9::puzzle2() {
-    //fillData();
-    return 0;
+    visited.clear();
+    if (movements.empty()) {
+        fillData();
+    }
+
+    int knots = 10;
+    std::vector<pairi> rope;
+    rope.resize(knots);
+    visited.insert(rope[knots-1]);
+    for (int i = 0; i < movements.size(); i++) {
+        auto& current = movements[i];
+        for (int j = 0; j < times[i]; j++) {
+            for (int k = 1; k < knots ; k++) {
+                pairi head = rope[k-1];
+                pairi tail = rope[k];
+                if (k == 1) {
+                    head = sum(head, current);
+                    rope[k - 1] = head;
+                }
+                auto htdiff = diff(head, tail);
+                if (std::abs(htdiff.first) > 1 || std::abs(htdiff.second) > 1) {
+                    if (htdiff.first < 0) {
+                        tail = sum(tail, moveUp);
+                    }
+                    else if (htdiff.first > 0) {
+                        tail = sum(tail, moveDown);
+                    }
+                    if (htdiff.second < 0) {
+                        tail = sum(tail, moveLeft);
+                    }
+                    else if (htdiff.second > 0) {
+                        tail = sum(tail, moveRight);
+                    }                
+                    rope[k] = tail;
+                }
+                else {
+                    //No more movement in the rope go on
+                    break;
+                }
+
+                if (k == knots - 1) {
+                    visited.insert(tail);
+                }
+            }
+        }
+    }
+    return visited.size();
 }
 
 void Day9::fillData()
@@ -81,9 +110,9 @@ void Day9::fillData()
     }
 }
 
-pairi Day9::sum(pairi& a, pairi& b) {
+pairi Day9::sum(const pairi& a, const pairi& b) {
     return { a.first + b.first,a.second + b.second };
 }
-pairi Day9::diff(pairi& a, pairi& b) {
+pairi Day9::diff(const pairi& a, const pairi& b) {
     return { a.first - b.first,a.second - b.second };
 }

@@ -13,11 +13,16 @@ public:
 private:
 
     void fillData();
-    pairi sum(pairi& a, pairi& b);
-    pairi diff(pairi& a, pairi& b);
+    pairi sum(const pairi& a, const pairi& b);
+    pairi diff(const pairi& a, const pairi& b);
 
     std::vector<pairi> movements;
     std::vector<int> times;
     std::set<pairi> visited;
+
+    const pairi moveDown{ 1,0 };
+    const pairi moveUp{ -1,0 };
+    const pairi moveRight{ 0,1 };
+    const pairi moveLeft{ 0,-1 };
 };
 
