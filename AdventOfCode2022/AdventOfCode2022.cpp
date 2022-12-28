@@ -12,7 +12,7 @@ int main() {
 	//Test current day
 	const clock_t begin_time = clock();
 
-	Day12 day;
+	Day13 day;
 
 	//Day X puzzle y: 
 	int p1 = day.puzzle1();
@@ -40,8 +40,8 @@ int main() {
 		new Day10(),
 		new Day11(),
 		new Day12(),
-		/*new Day13(),
-		new Day14(),
+		new Day13(),
+		/*new Day14(),
 		new Day15(),
 		new Day16(),
 		new Day17(),
